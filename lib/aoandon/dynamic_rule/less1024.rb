@@ -12,7 +12,7 @@ module Aoandon
       end
 
       def self.logging?(packet)
-        false
+        true
       end
 
       private
