@@ -12,9 +12,8 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Minimalist network intrusion detection system (NIDS).}
   gem.homepage      = 'https://github.com/cyril/aoandon'
   gem.license       = 'MIT'
-
   gem.bindir        = 'bin'
-
+  gem.add_dependency 'pcap'
   gem.files         = `git ls-files`.split($/).reject {|f| f == 'blue-andon-creature.jpg' }
   gem.executables   = gem.files.grep(%r{^bin/}).map {|f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
