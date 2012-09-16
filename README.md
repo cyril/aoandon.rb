@@ -18,6 +18,12 @@ Or install it yourself as:
 
     $ gem install aoandon
 
+## Getting started
+
+    $ ifconfig
+    $ aoandon -h
+    $ sudo aoandon -i eth0 -v
+
 ## Usage
 
 Aoandon NIDS is the selective ignoring or alerting of data packets as they pass through its network interface.  The criteria that it uses when inspecting packets are based on the Layer 3 (IPv4 and IPv6) and Layer 4 (TCP, UDP) headers.  The most often used criteria are source and destination address, source and destination port, and protocol.
