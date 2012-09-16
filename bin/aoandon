@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+require 'ipaddr'
+require 'optparse'
+require 'pcap'
+require 'time'
+require 'yaml'
+require_relative '../lib/aoandon'
+
+Aoandon::Nids.new.run

@@ -1,0 +1,54 @@
+# Aoandon NIDS configuration file
+---
+#macros:
+#  web_server: &web_server
+#    114.21.70.71
+#  gateway: &gw
+#    192.168.0.1
+
+#tables:
+#  redzone: &redzone
+#    - "81.15.142.23"
+#  hacker: &id001
+#    - 81.15.142.23
+#    - 42.154.25.213
+#  blacklist: &blacklist
+#    - *id001
+#    - *gw
+#    - 81.15.142.23
+#    - "64.81.240.57"
+#  unknown:
+#    - any
+#  mz: &mz
+#    192.168.0.201
+#  dmz: &dmz
+#    sql_server: &sql_server
+#      10.0.0.2
+
+#ports:
+#  web: &www
+#    - 80
+#    - 443
+#  p2p:
+#    - 63192
+
+#messages:
+#  - &msg001 "ICMP packet from Google to MZ"
+#  - &msg002 "MZ intrusion detected!"
+
+rules:
+#  # "default alert" approach
+#  - [ info, {}, {quick: true, log: true, msg: "Suspected packet!"} ]
+#
+#  # then, selectively ignore certain traffic
+#  - [ pass, {af: inet, from: {addr: any}, to: {addr: any}} ]
+#  - [ warn, {proto: tcp, from: {addr: *blacklist}, to: {addr: any, port: *www}, flags: syn} ]
+#  - [ warn, {proto: tcp, from: {addr: any, port: 123}, to: {addr: *dmz}} ]
+#  - [ crit, {af: inet6, from: {addr: any}, to: {addr: any}}, {log: true} ]
+#  - [ pass, {af: inet, proto: tcp, from: {addr: *mz}, to: {addr: *web_server, port: *www}, {quick: true}} ]
+#  - [ warn, {proto: udp, from: {addr: *redzone}, to: {addr: 10.1.0.32, port: 21}} ]
+#  - [ info, {proto: tcp, from: {addr: 172.16.0.6}, to: {addr: 192.168.0.14, port: 22}} ]
+#  - [ crit, {proto: tcp, from: {addr: *blacklist}, to: {addr: *mz}}, {log: true, msg: *msg002} ]
+#  - [ info, {proto: tcp, to: {addr: 192.168.0.14, port: 22}} ]
+#  - [ pass, {proto: tcp, from: {addr: *id001}, to: {addr: *sql_server, port: 3306}} ]
+#  - [ info, {af: inet, proto: icmp, from: {addr: google.com}, to: {addr: *mz}}, {log: true, msg: *msg001} ]
