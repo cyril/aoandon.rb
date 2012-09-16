@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ['contact@cyril.io']
   gem.description   = %q{Aoandon (青行燈) is a minimalist network intrusion detection system (NIDS).}
   gem.summary       = %q{Minimalist network intrusion detection system (NIDS).}
-  gem.homepage      = 'http://cyril.io'
+  gem.homepage      = 'https://github.com/cyril/aoandon'
   gem.license       = 'MIT'
 
   gem.bindir        = 'bin'
