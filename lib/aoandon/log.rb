@@ -1,7 +1,12 @@
 module Aoandon
   class Log
     def initialize(verbose = false)
-      @file = File.open('log/aoandon.yml', 'a')
+      @file = if File.exist?('log/aoandon.yml')
+        File.open('log/aoandon.yml', 'a')
+      else
+        File.open('/var/log/aoandon.yml', 'a')
+      end
+
       @verbose = verbose
 
       puts "Log file: #{File.expand_path(@file.path)}"
