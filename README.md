@@ -1,6 +1,6 @@
 # Aoandon
 
-Aoandon (青行燈) is a minimalist network intrusion detection system (NIDS).
+<span lang="ja"><ruby>青<rt>ao</rt>行燈<rt>andon</rt></ruby></span> is a minimalist network intrusion detection system (NIDS).
 
 ![Blue andon creature](https://raw.github.com/cyril/aoandon/master/blue-andon-creature.jpg)
 
