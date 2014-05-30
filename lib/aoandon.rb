@@ -4,7 +4,6 @@ require_relative 'aoandon/analysis/syntax'
 require_relative 'aoandon/error/not_implemented_error'
 require_relative 'aoandon/log'
 require_relative 'aoandon/static_rule'
-require_relative 'aoandon/version'
 
 Dir['lib/aoandon/dynamic_rule/*.rb'].each do |src|
   load src

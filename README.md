@@ -2,7 +2,11 @@
 
 <span lang="ja"><ruby>青<rt>ao</rt>行燈<rt>andon</rt></ruby></span> is a minimalist network intrusion detection system (NIDS).
 
-![Blue andon creature](https://raw.github.com/cyril/aoandon/master/blue-andon-creature.jpg)
+![Blue andon creature](https://raw.githubusercontent.com/cyril/aoandon.rb/master/blue-andon-creature.jpg)
+
+## Status
+
+* [![Gem Version](https://badge.fury.io/rb/aoandon.svg)](//badge.fury.io/rb/aoandon)
 
 ## Installation
 
@@ -22,7 +26,20 @@ Or install it yourself as:
 
     $ ifconfig
     $ aoandon -h
-    $ sudo aoandon -i eth0 -v
+    Usage: bin/aoandon [options]
+        -f, --file <path>                Load the rules contained in file <path>.
+        -h, --help                       Help.
+        -i, --interface <if>             Sniff on network interface <if>.
+        -v, --verbose                    Produce more verbose output.
+        -V, --version                    Show the version number and exit.
+    $ sudo aoandon -i en0 -v
+    Starting Aoandon NIDS on interface en0...
+    Log file: /var/log/aoandon.yml
+    Ruleset:  /Users/bob/code/aoandon.rb/config/rules.yml
+    Modules:  Less1024
+    You can stop Aoandon NIDS by pressing Ctrl-C.
+    2014-05-30T11:46:44+02:00 | SYNTAX | info | Suspected packet! | 42.0.0.1:8080 > 192.168.1.88:64563 .AP...
+    2014-05-30T11:46:44+02:00 | SYNTAX | info | Suspected packet! | 192.168.1.88:64563 > 42.0.0.1:8080 .A....
 
 ## Usage
 
@@ -299,4 +316,4 @@ end
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+5. Create a new Pull Request

@@ -8,3 +8,26 @@ require 'yaml'
 require_relative '../lib/aoandon'
 
 Aoandon::Nids.new.run
+
+
+
+=begin
+
+#!/usr/bin/env ruby
+
+require 'h'
+
+h = H::Generator.new
+
+result = if ARGV.first
+  if ARGV[1]
+    h.input ARGV[0].to_s, ARGV[1].to_i
+  else
+    h.input ARGV[0].to_s
+  end
+else
+  h.prompt
+end
+
+puts result
+=end
