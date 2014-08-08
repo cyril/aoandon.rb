@@ -6,7 +6,8 @@
 
 ## Status
 
-* [![Gem Version](https://badge.fury.io/rb/aoandon.svg)](//badge.fury.io/rb/aoandon)
+[![Gem Version](https://badge.fury.io/rb/aoandon.svg)](//badge.fury.io/rb/aoandon)
+![](https://ruby-gem-downloads-badge.herokuapp.com/aoandon?type=total)
 
 ## Installation
 
