@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
-require_relative '../lib/aoandon'
+require_relative "../lib/aoandon"
 
 ao = Aoandon::Nids.new
 ao.run

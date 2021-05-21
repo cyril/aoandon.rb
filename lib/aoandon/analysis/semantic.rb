@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Aoandon
   class Semantic < Analysis
     def initialize(logger, options = {})
@@ -9,16 +11,12 @@ module Aoandon
     def test(packet)
       if defined? DynamicRule
         DynamicRule.constants.each do |rule|
-          if DynamicRule.const_get(rule).control?(packet)
-            dump = DynamicRule.const_get(rule).logging?(packet) ? packet : nil
-            message = if DynamicRule.const_get(rule).constants.include?(:MESSAGE)
-              DynamicRule.const_get(rule)::MESSAGE
-            else
-              nil
-            end
+          next unless DynamicRule.const_get(rule).control?(packet)
 
-            @logger.message(packet.time.iso8601, 'SEMANT', rule.downcase, message, dump)
-          end
+          dump = DynamicRule.const_get(rule).logging?(packet) ? packet : nil
+          message = (DynamicRule.const_get(rule)::MESSAGE if DynamicRule.const_get(rule).constants.include?(:MESSAGE))
+
+          @logger.message(packet.time.iso8601, "SEMANT", rule.downcase, message, dump)
         end
       end
     end

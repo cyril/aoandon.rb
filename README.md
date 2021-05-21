@@ -2,38 +2,63 @@
 
 <span lang="ja"><ruby>青<rt>ao</rt>行燈<rt>andon</rt></ruby></span> is a minimalist network intrusion detection system (NIDS).
 
-![Blue andon creature](https://raw.githubusercontent.com/cyril/aoandon.rb/master/blue-andon-creature.jpg)
+![Blue andon creature](https://raw.githubusercontent.com/cyril/aoandon.rb/main/blue-andon-creature.jpg)
 
 ## Status
 
-[![Gem Version](https://badge.fury.io/rb/aoandon.svg)](//badge.fury.io/rb/aoandon)
+[![Gem Version](https://badge.fury.io/rb/aoandon.svg)](https://badge.fury.io/rb/aoandon)
+[![Build Status](https://travis-ci.org/cyril/aoandon.rb.svg?branch=main)](https://travis-ci.org/cyril/aoandon.rb)
+[![Inline Docs](https://inch-ci.org/github/cyril/aoandon.rb.svg)](https://inch-ci.org/github/cyril/aoandon.rb)
 ![](https://ruby-gem-downloads-badge.herokuapp.com/aoandon?type=total)
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'aoandon'
+```ruby
+gem "aoandon"
+```
 
 And then execute:
 
-    $ bundle
+```sh
+bundle
+```
 
 Or install it yourself as:
 
-    $ gem install aoandon
+```sh
+gem install aoandon
+```
 
 ## Getting started
 
-    $ ifconfig
-    $ aoandon -h
-    Usage: bin/aoandon [options]
+To start, let's look at the machine's network interfaces in console:
+
+```sh
+ifconfig
+```
+
+And let's display the help menu:
+
+```sh
+aoandon -h
+```
+
+    Usage: aoandon [options]
         -f, --file <path>                Load the rules contained in file <path>.
         -h, --help                       Help.
         -i, --interface <if>             Sniff on network interface <if>.
         -v, --verbose                    Produce more verbose output.
         -V, --version                    Show the version number and exit.
-    $ sudo aoandon -i en0 -v
+    Stopping Aoandon NIDS... done.
+
+Now, let's start scanning the network traffic on the machine's en0 network interface:
+
+```sh
+sudo aoandon -i en0 -v
+```
+
     Starting Aoandon NIDS on interface en0...
     Log file: /var/log/aoandon.yml
     Ruleset:  /Users/bob/code/aoandon.rb/config/rules.yml
@@ -190,13 +215,13 @@ Some semantic analysis can also be done through Aoandon NIDS extensions, using m
 module Aoandon
   module DynamicRule
     module Less1024
-      MESSAGE = 'Port numbers < 1024'
+      MESSAGE = "Port numbers < 1024"
       PROTO_TCP = 6
       PROTO_UDP = 17
       WELL_KNOWN_PORTS = (0..1023)
 
       def self.control?(packet)
-        (tcp?(packet) || (udp?(packet) && different_ports?(packet.sport, packet.dport))) && 
+        (tcp?(packet) || (udp?(packet) && different_ports?(packet.sport, packet.dport))) &&
           less_1024?(packet.sport) && less_1024?(packet.dport)
       end
 
@@ -231,7 +256,7 @@ end
 module Aoandon
   module DynamicRule
     module MoreFragments
-      MESSAGE = 'More Fragment bit is set'
+      MESSAGE = "More Fragment bit is set"
 
       def self.control?(packet)
         packet.ip_mf?
@@ -250,8 +275,8 @@ end
 module Aoandon
   module DynamicRule
     module SameIp
-      LOCALHOST = '127.0.0.1'
-      MESSAGE = 'Same IP'
+      LOCALHOST = "127.0.0.1"
+      MESSAGE = "Same IP"
 
       def self.control?(packet)
         packet.ip_src == packet.ip_dst && !loopback?(packet.ip_src)
@@ -277,7 +302,7 @@ module Aoandon
   module DynamicRule
     module SynFlood
       BUFFER = 20
-      MESSAGE = 'SYN flood attack'
+      MESSAGE = "SYN flood attack"
       PROTO_TCP = 6
 
       def self.control?(packet)
@@ -311,10 +336,10 @@ module Aoandon
 end
 ```
 
-## Contributing
+## Versioning
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+__Aoandon__ uses [Semantic Versioning 2.0.0](https://semver.org/)
+
+## License
+
+The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
