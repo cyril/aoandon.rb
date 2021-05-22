@@ -19,7 +19,7 @@ Dir["lib/aoandon/dynamic_rule/*.rb"].each do |src|
 end
 
 module Aoandon
-  class Nids
+  class NIDS
     CONF_PATH = "config/rules.yml".freeze
 
     def initialize

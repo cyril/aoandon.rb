@@ -3,5 +3,5 @@
 
 require_relative "../lib/aoandon"
 
-ao = Aoandon::Nids.new
+ao = Aoandon::NIDS.new
 ao.run
