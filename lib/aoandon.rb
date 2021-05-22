@@ -21,7 +21,7 @@ module Aoandon
     CONF_PATH = "config/rules.yml"
 
     def initialize
-      options = Nids.parse
+      options = self.class.parse
       options[:file] = CONF_PATH unless options[:file]
       options[:interface] = Pcap.lookupdev unless options[:interface]
       puts "Starting Aoandon NIDS on interface #{options[:interface]}..."
