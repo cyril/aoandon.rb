@@ -12,7 +12,7 @@ module Aoandon
       context["to"].update("addr" => "any") unless context["to"]["addr"]
 
       self.options ||= {}
-      self.options.update("log" => false) unless self.options.has_key?("log")
+      self.options.update("log" => false) unless self.options.key?("log")
     end
   end
 end

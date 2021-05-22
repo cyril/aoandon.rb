@@ -26,22 +26,24 @@ module Aoandon
     protected
 
     def match?(packet, network_context)
-      network_context.update({ "af" => af2id(packet.ip_ver) }) unless network_context.has_key?("af")
+      network_context.update({ "af" => af2id(packet.ip_ver) }) unless network_context.key?("af")
       match_proto?(packet, network_context) if packet.ip_ver == af(network_context.fetch("af"))
     end
 
     def af2id(af)
-      if af == 4
+      case af
+      when 4
         "inet"
-      elsif af == 6
+      when 6
         "inet6"
       end
     end
 
     def af(name)
-      if name.to_sym == :inet
+      case name.to_sym
+      when :inet
         4
-      elsif name.to_sym == :inet6
+      when :inet6
         6
       end
     end
@@ -49,13 +51,14 @@ module Aoandon
     def match_proto?(packet, network_context)
       if network_context["proto"]
         if packet.ip_proto == proto(network_context["proto"])
-          if packet.ip_proto == 1
+          case packet.ip_proto
+          when 1
             match_proto_icmp?(packet, network_context)
-          elsif packet.ip_proto == 6
+          when 6
             match_proto_tcp?(packet, network_context)
-          elsif packet.ip_proto == 17
+          when 17
             match_proto_udp?(packet, network_context)
-          elsif packet.ip_proto == 58
+          when 58
             match_proto_icmp6?(packet, network_context)
           else
             match_addr?(packet, network_context)
@@ -67,13 +70,14 @@ module Aoandon
     end
 
     def proto(name)
-      if name.to_sym == :icmp
+      case name.to_sym
+      when :icmp
         1
-      elsif name.to_sym == :icmp6
+      when :icmp6
         58
-      elsif name.to_sym == :tcp
+      when :tcp
         6
-      elsif name.to_sym == :udp
+      when :udp
         17
       end
     end
@@ -102,7 +106,7 @@ module Aoandon
       result = true
 
       [%w[from sport], %w[to dport]].each do |way, obj|
-        if network_context[way].has_key?("port")
+        if network_context[way].key?("port")
           result &&= refer2port?(packet.send(obj).to_i, network_context[way].fetch("port"))
         end
       end
@@ -129,23 +133,25 @@ module Aoandon
     end
 
     def refer2addr?(addr, pattern)
-      if pattern.is_a? Array
+      case pattern
+      when Array
         pattern.include?(addr.to_num_s) || pattern.include?(addr.hostname)
-      elsif pattern.is_a? Hash
-        pattern.has_key?(addr.to_num_s) || pattern.has_key?(addr.hostname)
-      elsif pattern.is_a? String
-        addr.to_num_s == pattern        || addr.hostname == pattern
+      when Hash
+        pattern.key?(addr.to_num_s) || pattern.key?(addr.hostname)
+      when String
+        addr.to_num_s == pattern || addr.hostname == pattern
       else
         false
       end
     end
 
     def refer2port?(number, pattern)
-      if pattern.is_a? Array
+      case pattern
+      when Array
         pattern.include?(number)
-      elsif pattern.is_a? Hash
-        pattern.has_key?(number)
-      elsif pattern.is_a? Integer
+      when Hash
+        pattern.key?(number)
+      when Integer
         number == pattern
       else
         false

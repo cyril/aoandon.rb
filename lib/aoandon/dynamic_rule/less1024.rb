@@ -6,7 +6,7 @@ module Aoandon
       MESSAGE = "Port numbers < 1024"
       PROTO_TCP = 6
       PROTO_UDP = 17
-      WELL_KNOWN_PORTS = (0..1023)
+      WELL_KNOWN_PORTS = (0..1023).freeze
 
       def self.control?(packet)
         (tcp?(packet) || (udp?(packet) && different_ports?(packet.sport, packet.dport))) &&

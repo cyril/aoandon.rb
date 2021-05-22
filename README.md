@@ -215,10 +215,10 @@ Some semantic analysis can also be done through Aoandon NIDS extensions, using m
 module Aoandon
   module DynamicRule
     module Less1024
-      MESSAGE = "Port numbers < 1024"
+      MESSAGE = "Port numbers < 1024".freeze
       PROTO_TCP = 6
       PROTO_UDP = 17
-      WELL_KNOWN_PORTS = (0..1023)
+      WELL_KNOWN_PORTS = (0..1023).freeze
 
       def self.control?(packet)
         (tcp?(packet) || (udp?(packet) && different_ports?(packet.sport, packet.dport))) &&
@@ -256,7 +256,7 @@ end
 module Aoandon
   module DynamicRule
     module MoreFragments
-      MESSAGE = "More Fragment bit is set"
+      MESSAGE = "More Fragment bit is set".freeze
 
       def self.control?(packet)
         packet.ip_mf?
@@ -275,8 +275,8 @@ end
 module Aoandon
   module DynamicRule
     module SameIp
-      LOCALHOST = "127.0.0.1"
-      MESSAGE = "Same IP"
+      LOCALHOST = "127.0.0.1".freeze
+      MESSAGE = "Same IP".freeze
 
       def self.control?(packet)
         packet.ip_src == packet.ip_dst && !loopback?(packet.ip_src)
@@ -302,7 +302,7 @@ module Aoandon
   module DynamicRule
     module SynFlood
       BUFFER = 20
-      MESSAGE = "SYN flood attack"
+      MESSAGE = "SYN flood attack".freeze
       PROTO_TCP = 6
 
       def self.control?(packet)

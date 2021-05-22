@@ -1,5 +1,6 @@
 # frozen_string_literal: false
 
+require "bundler/setup"
 require "ipaddr"
 require "optparse"
 require "pcap"
@@ -11,6 +12,7 @@ require_relative "aoandon/analysis/semantic"
 require_relative "aoandon/analysis/syntax"
 require_relative "aoandon/log"
 require_relative "aoandon/static_rule"
+require_relative "aoandon/version"
 
 Dir["lib/aoandon/dynamic_rule/*.rb"].each do |src|
   load src
@@ -18,7 +20,7 @@ end
 
 module Aoandon
   class Nids
-    CONF_PATH = "config/rules.yml"
+    CONF_PATH = "config/rules.yml".freeze
 
     def initialize
       options = self.class.parse
@@ -48,7 +50,7 @@ module Aoandon
       options = {}
 
       OptionParser.new do |opts|
-        opts.banner = "Usage: #{$0} [options]"
+        opts.banner = "Usage: #{$PROGRAM_NAME} [options]"
         opts.on("-f", "--file <path>", "Load the rules contained in file <path>.") { |f| options[:file] = f }
         opts.on("-h", "--help", "Help.") { puts opts; exit }
         opts.on("-i", "--interface <if>", "Sniff on network interface <if>.") { |i| options[:interface] = i }

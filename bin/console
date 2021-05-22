@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 require "bundler/setup"
-require "accept_language"
+require "aoandon"
 require "irb"
 
 IRB.start(__FILE__)
