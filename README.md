@@ -190,7 +190,7 @@ messages:
 
 rules:
   # "default alert" approach
-  - [ info, {}, {quick: true, log: true, msg: "Suspected packet!"} ]
+  - [ info, {}, {log: true, msg: "Suspected packet!"} ]
 
   # then, selectively ignore certain traffic
   - [ pass, {af: inet, from: {addr: any}, to: {addr: any}} ]
