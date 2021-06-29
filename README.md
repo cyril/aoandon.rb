@@ -6,10 +6,11 @@
 
 ## Status
 
-[![Gem Version](https://badge.fury.io/rb/aoandon.svg)](https://badge.fury.io/rb/aoandon)
-[![Build Status](https://travis-ci.org/cyril/aoandon.rb.svg?branch=main)](https://travis-ci.org/cyril/aoandon.rb)
-[![Inline Docs](https://inch-ci.org/github/cyril/aoandon.rb.svg)](https://inch-ci.org/github/cyril/aoandon.rb)
-![](https://ruby-gem-downloads-badge.herokuapp.com/aoandon?type=total)
+[![Version](https://img.shields.io/github/v/tag/cyril/aoandon.rb?label=Version&logo=github)](https://github.com/cyril/aoandon.rb/releases)
+[![Yard documentation](https://img.shields.io/badge/Yard-documentation-blue.svg?logo=github)](https://rubydoc.info/github/cyril/aoandon.rb/main)
+[![CI](https://github.com/cyril/aoandon.rb/workflows/CI/badge.svg?branch=main)](https://github.com/cyril/aoandon.rb/actions?query=workflow%3Aci+branch%3Amain)
+[![RuboCop](https://github.com/cyril/aoandon.rb/workflows/RuboCop/badge.svg?branch=main)](https://github.com/cyril/aoandon.rb/actions?query=workflow%3Arubocop+branch%3Amain)
+[![License](https://img.shields.io/github/license/cyril/aoandon.rb?label=License&logo=github)](https://github.com/cyril/aoandon.rb/raw/main/LICENSE.md)
 
 ## Installation
 
@@ -342,4 +343,4 @@ __Aoandon__ uses [Semantic Versioning 2.0.0](https://semver.org/)
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+The [gem](https://rubygems.org/gems/aoandon) is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
